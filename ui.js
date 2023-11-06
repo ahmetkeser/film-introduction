@@ -16,7 +16,7 @@ UI.prototype.clearInputs = function(element1,element2,element3){
     element2.value=""
     element3.value=""
 }
-UI.prototype.displayMessages=function(message,type){
+UI.prototype.displayMessages=function(message,type){ // uyarı mesaj fonksiyonu
     const cardBody=document.querySelector(".card-body")
     const div = document.createElement("div")
     div.className = `alert alert-${type}`
@@ -34,10 +34,9 @@ UI.prototype.loadAllFilms= function(films){ // sayfa yüklendiğinde localstorag
         <tr>
         <td><img src="${films.url}" class="img-fluid img-thumbnail"></td>
         <td>${films.title}</td>
-        <td>${films.diractor}</td>
+        <td>${films.director}</td>
         <td><a href="#" id = "delete-film" class = "btn btn-danger">Filmi Sil</a></td>
     </tr>`
-    
             
     });
 
@@ -45,4 +44,10 @@ UI.prototype.loadAllFilms= function(films){ // sayfa yüklendiğinde localstorag
 UI.prototype.deleteFilmFromUI= function(item){
     item.parentElement.parentElement.remove()//a tagının bulunduğu iki üst dala çıkarak satırı kompple silmemiz gerekir bu sebeple iki kez perentElement yazılır.
 
+}
+UI.prototype.clearAllFilmsFromUI = function(){
+    const filmList = document.getElementById("films")
+    while(filmList.firstElementChild !== null){ //  film listesinde eleman kalmayana kadar dön
+        filmList.firstElementChild.remove()
+    }
 }
